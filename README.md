@@ -6,7 +6,7 @@ Utiliza `NeDB` como base de datos, `validate.js`, entre otras cosas.
 
 ## Instalacion
 
-Debe estar instalado `Electron` globalmente:
+Debe estar instalado `Electron` globalmente
 
 ```bash
 npm install electron -g
@@ -14,8 +14,15 @@ npm install electron -g
 
 Y luego ejecutar
 
-```
+```bash
 npm install
 bower install
 ```
 
+## Ejecucion
+
+Estando en el directorio raiz del proyecto
+
+```bash
+electron .
+```
