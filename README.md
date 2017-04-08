@@ -17,6 +17,7 @@ Y luego ejecutar
 ```bash
 npm install
 bower install
+gulp compileScripts
 ```
 
 ## Ejecucion
