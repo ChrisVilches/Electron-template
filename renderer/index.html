@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mi App!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script>
+	if (typeof module === 'object') {window.module = module; module = undefined;}
+	if (window.module) module = window.module;
+	</script>
+
+	<style type="text/css">
+		*:not(input):not(textarea) {
+			-webkit-touch-callout:none;
+			-webkit-user-select:none;
+			-moz-user-select:none;
+			-ms-user-select:none;
+			user-select:none;cursor:default;
+		}
+	</style>
+
+	<link href='bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+	<link href='css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>	
+	<script src="index.js"></script>
+
+</head>
+<body>
+
+	<div class="container">
+
+	<a href="segunda.html">Segunda.html</a>
+
+
+		<h3>Hello 世界</h3>
+
+		<code>$ node -v</code><div id="node_version"></div>
+
+		<div class="row">
+			<div>			
+				<input id="sum_a" class="form-control" placeholder="Sumando A..."/>
+				<input id="sum_b" class="form-control" placeholder="Sumando B..."/>
+				<span id="sum_response"></span>
+				<button id="get_sum_btn" class="btn btn-primary">Sum</button>
+			</div>
+		</div>
+
+		<div class="row">			
+			<textarea id="new_window_url" class="form-control" placeholder="url..."></textarea>
+			<button id="create_new_window" class="btn btn-primary">Open window</button>
+		</div>
+
+
+		<div class="row">
+			<input id="name" placeholder="name" class="form-control"/>
+			<input id="surname" placeholder="surname" class="form-control"/>
+			<button id="add_user" class="btn btn-primary">Add user</button>
+		</div>
+
+		<div class="row">
+			<div id="user_list">
+			</div>
+		</div>
+
+
+	</div>
+
+
+</body>
+</html>
+

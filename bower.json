@@ -1,0 +1,22 @@
+{
+  "name": "best-application-in-the-world",
+  "description": "Aplicacion simple de prueba",
+  "main": "compiled/main.js",
+  "authors": [
+    "Felo"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "renderer/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
+  }
+}
