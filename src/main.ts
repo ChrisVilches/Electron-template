@@ -4,15 +4,22 @@ var electron = require('electron');
 var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
-var Functions = require('./lib/functions');
-var Planet = require('./dao/planets');
-var User = require('./dao/users');
+var path = require('path');
+var Datastore = require('nedb');
+
+import { User } from './dao/users';
+import { Planet } from './dao/planets';
 
 
-var db = {
-	users: User.get_instance().init(__dirname + "/../db/users.db"),
-	planets: Planet.get_instance().init(__dirname + "/../db/planets.db")
-};
+function open_db(file_name, module){
+	file_name = path.join('db', file_name);	
+	var ds = new Datastore({ filename: file_name, autoload: true, timestampData: true });
+	module.init(ds);
+}
+
+open_db('planets.db', Planet);
+open_db('users.db', User);
+
 
 
 
@@ -24,12 +31,11 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
 
 	mainWindow = new BrowserWindow({width: 800, height: 600});
-	mainWindow.loadURL('file://' + __dirname + '/../renderer/index.html');
+	mainWindow.loadURL(path.join('file://', __dirname, '/../renderer/index.html'));
 
 	mainWindow.on('closed', function() {
 		mainWindow = null;
 	});
 
 });
-
 
