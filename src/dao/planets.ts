@@ -5,8 +5,6 @@ var path = require('path');
 
 module.exports = class Planet{
 
-	private db_filename : string  = "db/planets.db";
-
 	private ds;
 
 	private static instance : Planet = null;

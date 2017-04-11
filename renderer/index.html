@@ -25,6 +25,7 @@
 
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>	
 	<script src="index.js"></script>
 
 </head>
@@ -64,9 +65,16 @@
 			<div id="user_list">
 			</div>
 		</div>
-
-
 	</div>
+
+
+
+
+	<script id="user_list_template" type="text/x-handlebars-template">​
+		{{#each users}}
+			<p>Nombre: {{ name }}</p>
+		{{/each}}	
+	​</script>
 
 
 </body>

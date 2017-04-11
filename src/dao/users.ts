@@ -4,6 +4,7 @@ var path = require('path');
 
 module.exports = class User{
 
+	// Doesn't validate subkeys
 	private validate_partial(obj, constraints){
 
 		if(typeof obj === "undefined") return undefined;
@@ -25,8 +26,6 @@ module.exports = class User{
 		return msgs;
 	};
 
-
-	private db_filename : string  = "/db/users.db";
 
 	private ds;
 
@@ -56,6 +55,9 @@ module.exports = class User{
 					within: ["devil", "diarrhea", "vomit"],
 					message: "'%{value}' is not allowed."
 				}
+			},
+			lugar: {
+				presence: false
 			}
 		};
 
@@ -77,9 +79,7 @@ module.exports = class User{
 
 
 	selectAll(callback){
-
 		this.ds.find({}).sort({ createdAt: -1 }).exec(callback);
-
 	}
 
 
@@ -91,7 +91,8 @@ module.exports = class User{
 		var msg : string;
 
 		if(msg = validate(user,this.constraints)){
-			callback(msg);
+			if(callback)
+				callback(msg);
 			return;
 		}
 
@@ -102,16 +103,17 @@ module.exports = class User{
 
 	update(query, partial_user, callback){
 
-		partial_user = validate.cleanAttributes(partial_user,this.constraints);	
+		partial_user = validate.cleanAttributes(partial_user,this.constraints);
 
 		var msg;
 
 		if(msg = this.validate_partial(partial_user,this.constraints)){
-			callback(msg);
+			if(callback)
+				callback(msg);
 			return;
 		}
 
-		this.ds.update(query, { $set: partial_user }, {}, callback);
+		this.ds.update(query, { $set: partial_user }, { upsert: false }, callback);
 
 
 	}

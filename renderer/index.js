@@ -4,9 +4,14 @@ const fs = require('fs');
 const exec = require('child_process').exec;
 const Functions = require('electron').remote.require('./lib/functions');
 const User = require('electron').remote.require('./dao/users')
-
+var user_list_template = null;
+var users = null;
 
 $(document).ready(function(){
+
+	user_list_template = Handlebars.compile($("#user_list_template").html());
+
+
 
 	var u = User.get_instance();
 
@@ -14,23 +19,19 @@ $(document).ready(function(){
 		$("#node_version").html(stdout);
 	});
 
-	u.selectAll(function(err, users){
+	u.selectAll(function(err, res){
 		if(err){
 			throw err;
 		}
 
-		var str = "";
-		
-		for(var i in users){
-			str += users[i].createdAt + " " + users[i].name + " " + users[i].surname + "<br/>";
-		}
+		users = res;		
 
-		$("#user_list").html(str);
+		$("#user_list").html(user_list_template({ users }));
 
 	});
 
 
-	$("#user_list")
+
 
 
 	$("#get_sum_btn").click(function(){
@@ -67,9 +68,9 @@ $(document).ready(function(){
 				console.log(err);
 			}
 
-			if(doc){
-				console.log(doc);
-			}
+			users.push(doc);
+
+			$("#user_list").html(user_list_template({ users }));
 
 		});
 

@@ -4,23 +4,15 @@ var electron = require('electron');
 var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
-const Functions = require('./lib/functions');
-const Planet = require('./dao/planets');
-const User = require('./dao/users');
-
+var Functions = require('./lib/functions');
+var Planet = require('./dao/planets');
+var User = require('./dao/users');
 
 
 var db = {
 	users: User.get_instance().init(__dirname + "/../db/users.db"),
 	planets: Planet.get_instance().init(__dirname + "/../db/planets.db")
 };
-
-
-
-
-db.users.insert({name: "agregado", surname: "sinprint", hola:"adios"});
-
-db.users.update({_id: 'dOLAkDpKGaCoNudo' }, { surname: 'xDxDxDxD', mojon:"caca" });
 
 
 
@@ -39,4 +31,5 @@ app.on('ready', function() {
 	});
 
 });
+
 
