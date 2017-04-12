@@ -37,45 +37,45 @@ export module User {
 		};
 
 	export function init(_ds){
-		this.ds = _ds;
+		ds = _ds;
 	}
 
 
 	export function selectAll(callback){
-		this.ds.find({}).sort({ createdAt: -1 }).exec(callback);
+		ds.find({}).sort({ createdAt: -1 }).exec(callback);
 	}
 
 
 	export function insert(user, callback){
 
-		user = validate.cleanAttributes(user,this.constraints);	
+		user = validate.cleanAttributes(user,constraints);	
 
 		var msg : string;
 
-		if(msg = validate(user,this.constraints)){
+		if(msg = validate(user,constraints)){
 			if(callback)
 				callback(msg);
 			return;
 		}
 
-		this.ds.insert(user, callback);
+		ds.insert(user, callback);
 
 	}
 
 
 	export function update(query, partial_user, callback){
 
-		partial_user = validate.cleanAttributes(partial_user,this.constraints);
+		partial_user = validate.cleanAttributes(partial_user,constraints);
 
 		var msg;
 
-		if(msg = this.validate_partial(partial_user,this.constraints)){
+		if(msg = Functions.validate_partial(partial_user,constraints)){
 			if(callback)
 				callback(msg);
 			return;
 		}
 
-		this.ds.update(query, { $set: partial_user }, { upsert: false }, callback);
+		ds.update(query, { $set: partial_user }, { upsert: false }, callback);
 
 
 	}

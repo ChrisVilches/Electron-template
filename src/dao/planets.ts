@@ -8,7 +8,7 @@ export module Planet{
 	var ds;
 
 	export function init(_ds){
-		this.ds = _ds;		
+		ds = _ds;		
 	}
 
 }
